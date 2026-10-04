@@ -1,29 +1,31 @@
 # AWS EC2 User Data & Apache Web Server Automation Lab
 
-A hands-on cloud automation project demonstrating how to eliminate manual server configuration by using **EC2 User Data** to automatically bootstrap an Apache web server on an Amazon Linux EC2 instance upon launch.
+## Overview
+This repository documents a hands-on cloud automation and server provisioning lab performed on **Amazon Web Services (AWS)**[cite: 1]. The objective of this project was to leverage **EC2 User Data** to automatically bootstrap an Apache web server, manage services on boot, and deploy custom web content without manual intervention[cite: 1].
 
 ---
 
-## Lab Overview & Architecture
-
-<p align="center">
-  <img src="aws-ec2-user-data-apache-lab.jpg" alt="AWS EC2 User Data Lab Architecture" width="100%">
-</p>
+## Lab Architecture & Workflow Banner
+![AWS EC2 User Data Lab Architecture](aws-ec2-user-data-apache-lab.jpg)
 
 ---
 
-## What the Automation Script Does
+## Lab Documentation
+- You can view and download the complete step-by-step lab report with screenshots here:  
+  [Download Lab Report PDF](ApacheWithUserData.pdf)[cite: 1]
 
-Instead of manually connecting via SSH to update packages and install software, the **User Data** script executes automatically on first boot:
-1. **Updates System Packages:** Runs `yum update -y` to keep the environment secure and up to date.
-2. **Installs Apache Web Server:** Downloads and installs `httpd` (`httpd.x86_64`)[cite: 1].
-3. **Manages Services:** Starts the Apache service and enables it on boot using `systemctl`[cite: 1].
-4. **Deploys Custom Web Content:** Echoes a dynamic `hostname` HTML file straight into `/var/www/html/index.html`[cite: 1].
+---
+
+## Step-by-Step Methodology
+1. **Instance Provisioning**: Launched an Amazon Linux instance (`ApacheWithUserData`) on EC2 using a `t3.micro` configuration[cite: 1].
+2. **User Data Scripting**: Configured a bash script to execute on first boot to automate installation workflows[cite: 1].
+3. **Package & Service Management**: Automatically updated system packages, installed Apache (`httpd`), and enabled `httpd.service` to start on boot[cite: 1].
+4. **Web Content Deployment**: Echoed custom HTML output (`Hello World – Power of Automation`) directly into `/var/www/html/index.html`[cite: 1].
+5. **Testing & Verification**: Accessed the instance's public IPv4 address in a web browser to verify successful rendering of the automated page[cite: 1].
 
 ---
 
 ## User Data Script (`user-data.sh`)
-
 ```bash
 #!/bin/bash
 yum update -y
